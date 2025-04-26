@@ -322,7 +322,21 @@ def main_game():
         draw_lives(screen, SCREEN_WIDTH - 100, 5, player.lives, player_mini_img)
         
         # Flip the display
-        pygame.display.flip()
+        pygame.display.flip()\
+
+        if player.shield <= 0:
+            player.lives -= 1
+            player.shield = 100
+            player.hide()
+            if player.lives == 0:
+                game_over = True
+                # You might want to implement a game over screen here
+                running = False # Explicitly set running to False to exit the loop
+
+    # ... rest of the game loop ...
+
+    pygame.quit()
+    sys.exit() # Ensure proper exit after game over
     
     pygame.quit()
 
